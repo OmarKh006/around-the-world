@@ -1,12 +1,10 @@
 import "./App.css";
-import Logo from "./components/Logo";
-import ThemeToggle from "./components/ThemeToggle";
+import Header from "./components/Header";
 
 function App() {
   return (
-    <div className="font-[Inter]">
-      <Logo />
-      <ThemeToggle />
+    <div className="font-[Inter] dark:text-gray-100">
+      <Header />
     </div>
   );
 }
