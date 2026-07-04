@@ -1,12 +1,11 @@
 import "./App.css";
+import Logo from "./components/Logo";
 
 function App() {
   return (
-    <>
-      <div className="flex justify-center align-middle w-full h-full">
-        <h1 className="text-3xl">Omar</h1>
-      </div>
-    </>
+    <div className="font-[Inter]">
+      <Logo />
+    </div>
   );
 }
 
