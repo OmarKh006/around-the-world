@@ -9,9 +9,12 @@ function App() {
   const [countriesList, setCountriesList] = useState([]);
   const [offset, setOffset] = useState(0);
   const [hasMore, setHasMore] = useState(true);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
   const limit = 24;
 
   const fetchCountriesData = async () => {
+    setLoading(true);
     try {
       const response = await fetch(
         `https://api.restcountries.com/countries/v5?limit=${limit}&offset=${offset}`,
@@ -37,10 +40,11 @@ function App() {
 
       setCountriesList(summary);
       setHasMore(data.data.meta.more);
-
-      console.log(summary);
     } catch (error) {
+      setError(true);
       console.error("Error fetching countries data:", error);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -56,7 +60,17 @@ function App() {
           <SearchInput />
           <RegionMenu />
         </div>
-        <CountryList data={countriesList} />
+        {error && (
+          <p className="pt-4 text-center text-2xl font-bold text-red-700">
+            Something went wrong
+          </p>
+        )}
+        {loading && (
+          <p className="pt-4 text-center text-2xl font-bold">
+            Loading the data...
+          </p>
+        )}
+        {!error && !loading && <CountryList data={countriesList} />}
         <div className="mx-auto mt-6 flex w-full items-center justify-between">
           <button
             onClick={() => setOffset((prev) => Math.max(prev - limit, 0))}
