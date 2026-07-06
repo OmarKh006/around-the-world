@@ -1,6 +1,6 @@
-const SearchInput = () => {
+const SearchInput = ({ value, onChange }) => {
   return (
-    <form className="relative flex-1">
+    <form className="relative flex-1" onSubmit={(e) => e.preventDefault()}>
       <div className="absolute top-5 left-8">
         <svg
           width="18"
@@ -23,6 +23,8 @@ const SearchInput = () => {
       <input
         type="text"
         name="search"
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
         className="h-12 w-full max-w-md rounded-full pl-20 shadow md:h-14 dark:bg-gray-800"
         placeholder="Search..."
       />

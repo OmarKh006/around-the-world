@@ -1,15 +1,25 @@
 import Select from "react-select";
 
 const options = [
-  { value: "chocolate", label: "Chocolate" },
-  { value: "strawberry", label: "Strawberry" },
-  { value: "vanilla", label: "Vanilla" },
+  { value: "all", label: "All regions" },
+  { value: "africa", label: "Africa" },
+  { value: "asia", label: "Asia" },
+  { value: "europe", label: "Europe" },
+  { value: "oceania", label: "Oceania" },
+  { value: "antarctic", label: "Antarctic" },
+  { value: "americas", label: "Americas" },
 ];
 
-const RegionMenu = () => {
+const RegionMenu = ({ onRegionChange }) => {
+  const handleRegionChange = (event) => {
+    onRegionChange(event.value);
+  };
+
   return (
     <Select
+      defaultValue={options[0]}
       options={options}
+      onChange={handleRegionChange}
       classNames={{
         input: () => "dark:!text-gray-100",
         singleValue: () => "dark:text-gray-100",
